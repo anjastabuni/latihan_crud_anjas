@@ -1,8 +1,10 @@
 <?php
+$keyword = $_GET['keyword'];
 include('connection.php');
 
-$query = mysqli_query($connect, "SELECT * FROM karyawan");
-$results = mysqli_fetch_all($query, MYSQLI_ASSOC);
+$search = mysqli_query($connect, "SELECT * FROM karyawan WHERE nama='$keyword'");
+$results = mysqli_fetch_all($search, MYSQLI_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +20,7 @@ $results = mysqli_fetch_all($query, MYSQLI_ASSOC);
     <a href="add.php">Tambah Data</a>
     <br><br>
     <form action="search.php" method="get">
-        <input type="text" name="keyword" placeholder="Keyword .."/>
+        <input type="text" name="keyword" placeholder="Keyword .." value="<?= $_GET['keyword']?>"/>
         <button type="search">Cari</button>
     </form>
     <br>
